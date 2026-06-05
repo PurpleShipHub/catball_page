@@ -109,25 +109,8 @@ body {
 
 		<script src="catball.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"catball","experimentalVK":false,"fileSizes":{"catball.pck":7890900,"catball.wasm":37700666},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"catball","experimentalVK":false,"fileSizes":{"catball.pck":7890884,"catball.wasm":37700666},"focusCanvas":true,"gdextensionLibs":[]};
 const GODOT_THREADS_ENABLED = false;
-const CATBALL_BUILD_ID = "ee59fcb-tile-astar";
-const originalFetch = window.fetch.bind(window);
-window.fetch = (input, init) => {
-	if (typeof input === "string" && input.endsWith("catball.pck")) {
-		input = input + "?v=" + CATBALL_BUILD_ID;
-	} else if (input instanceof Request && input.url.endsWith("catball.pck")) {
-		input = new Request(input.url + "?v=" + CATBALL_BUILD_ID, input);
-	}
-	return originalFetch(input, init);
-};
-const originalXHROpen = XMLHttpRequest.prototype.open;
-XMLHttpRequest.prototype.open = function(method, url, ...rest) {
-	if (typeof url === "string" && url.endsWith("catball.pck")) {
-		url = url + "?v=" + CATBALL_BUILD_ID;
-	}
-	return originalXHROpen.call(this, method, url, ...rest);
-};
 const engine = new Engine(GODOT_CONFIG);
 
 (function () {
