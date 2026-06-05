@@ -109,25 +109,9 @@ body {
 
 		<script src="catball.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"catball","experimentalVK":false,"fileSizes":{"catball.pck":7890884,"catball.wasm":37700666},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"catball","experimentalVK":false,"fileSizes":{"catball.pck":7891956,"catball.wasm":37700666},"focusCanvas":true,"gdextensionLibs":[]};
 const GODOT_THREADS_ENABLED = false;
-const CATBALL_BUILD_TAG = "v09-push-route-30ced1d";
-const CATBALL_ORIGINAL_FETCH = window.fetch.bind(window);
-window.fetch = function(resource, init) {
-	if (typeof resource === 'string' && resource.endsWith('catball.pck')) {
-		resource = resource + '?v=' + CATBALL_BUILD_TAG;
-	} else if (resource instanceof Request && resource.url.endsWith('catball.pck')) {
-		resource = new Request(resource.url + '?v=' + CATBALL_BUILD_TAG, resource);
-	}
-	return CATBALL_ORIGINAL_FETCH(resource, init);
-};
-const CATBALL_XHR_OPEN = XMLHttpRequest.prototype.open;
-XMLHttpRequest.prototype.open = function(method, url, ...rest) {
-	if (typeof url === 'string' && url.endsWith('catball.pck')) {
-		url = url + '?v=' + CATBALL_BUILD_TAG;
-	}
-	return CATBALL_XHR_OPEN.call(this, method, url, ...rest);
-};
+const CATBALL_BUILD_TAG = "v10-clearability-falling-block";
 const engine = new Engine(GODOT_CONFIG);
 
 (function () {
