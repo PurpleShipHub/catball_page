@@ -111,6 +111,16 @@ body {
 		<script>
 const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"executable":"catball","experimentalVK":false,"fileSizes":{"catball.pck":7890932,"catball.wasm":37700666},"focusCanvas":true,"gdextensionLibs":[]};
 const GODOT_THREADS_ENABLED = false;
+const CATBALL_BUILD_ID = "d83d75d-v07";
+const originalFetch = window.fetch.bind(window);
+window.fetch = (input, init) => {
+	if (typeof input === "string" && input.endsWith("catball.pck")) {
+		input = input + "?v=" + CATBALL_BUILD_ID;
+	} else if (input instanceof Request && input.url.endsWith("catball.pck")) {
+		input = new Request(input.url + "?v=" + CATBALL_BUILD_ID, input);
+	}
+	return originalFetch(input, init);
+};
 const engine = new Engine(GODOT_CONFIG);
 
 (function () {
