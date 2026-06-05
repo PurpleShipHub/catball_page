@@ -121,6 +121,13 @@ window.fetch = (input, init) => {
 	}
 	return originalFetch(input, init);
 };
+const originalXHROpen = XMLHttpRequest.prototype.open;
+XMLHttpRequest.prototype.open = function(method, url, ...rest) {
+	if (typeof url === "string" && url.endsWith("catball.pck")) {
+		url = url + "?v=" + CATBALL_BUILD_ID;
+	}
+	return originalXHROpen.call(this, method, url, ...rest);
+};
 const engine = new Engine(GODOT_CONFIG);
 
 (function () {
